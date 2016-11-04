@@ -1,0 +1,571 @@
+\documentclass[12pt]{report}
+
+\title{Arwen 0.1.0  \\ 500 N methanol / gox Liquid Rocket Engine }
+
+
+\usepackage{amsmath}
+\usepackage{gensymb}
+
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+
+
+
+
+\newpage
+
+\section{Overview}
+
+A brief overview of the target-metrics for the engine.
+
+
+
+
+
+\vspace{10 mm}
+
+\begin{itemize}
+	\item \large{\textbf{Thrust: }} 500 N 
+	\item \large{\textbf{Isp: }} 248 s 
+	\item \large{\textbf{Chamber Pressure: }} 2.07 MPa 
+	\item \large{\textbf{Propellants: }}
+	\begin{itemize}
+		\item \large{\textbf{Mixture Ratio: }} 1.2 
+		\item \large{\textbf{Total Mass Flow Rate: }} 0.205518 kg s-1 
+		\item \large{\textbf{Fuel: }}
+		\begin{itemize}
+			\item \large{\textbf{Type: }} methanol 
+			\item \large{\textbf{Mass Flow Rate: }} 0.0934172 kg s-1 
+		\end{itemize}
+		\item \large{\textbf{Oxidizer: }}
+		\begin{itemize}
+			\item \large{\textbf{Type: }} gox 
+			\item \large{\textbf{Mass Flow Rate: }} 0.112101 kg s-1 
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+
+
+
+
+
+\newpage
+
+\section{Throat}
+
+Defining characteristics and calculations for the throat joining the nozzle and combustion chamber.
+
+
+\subsection{Critical Constants}
+
+Underlying constants that form the throat profile:
+
+\begin{itemize}
+	\item \textbf{Gamma (prop heat capacity ratio): } 1.2 
+	\item \textbf{Propellant Combustion Temp (Kelvin): } 3322.04 K 
+	\item \textbf{Chamber Pressure: } 2.07 MPa 
+\end{itemize}
+
+
+
+
+\subsection{Temperature Profile}
+
+The following equation gives the temperature to be expected at the throat plane of the nozzle.
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{T_{throat}}} & = \boldsymbol{\mathit{T_{coefficient}}} * \boldsymbol{\mathit{T_{chamber}}}\\
+ & = 3322.04 K * \frac{1}{1 + \frac{\boldsymbol{\mathit{\gamma}} - 1}{2}}\\
+ & = 3020.04 K
+\end{split}
+\end{equation}
+
+
+
+
+\subsection{Pressure Profile}
+
+The following equation gives the pressure to be expected at the throat plane of the nozzle.
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{P_{throat}}} & = \boldsymbol{\mathit{P_{coefficient}}} * \boldsymbol{\mathit{P_{chamber}}}\\
+ & = {\left(1 + \frac{\boldsymbol{\mathit{\gamma}} - 1}{2}\right)}^{-1 * \frac{\boldsymbol{\mathit{\gamma}}}{\boldsymbol{\mathit{\gamma}} - 1}} * 2.068e+06 Pa\\
+ & = 1.16733e+06 Pa
+\end{split}
+\end{equation}
+
+
+
+
+\subsection{Throat Geometry}
+
+The following equations define the geometrical/physical dimensions of the throat.
+
+
+
+
+\vspace{10 mm}
+
+First, we find $ \boldsymbol{\mathit{R'}} $ using the following equation:  \vspace{10 mm} 
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{R'}} & = \frac{\boldsymbol{\mathit{R}}}{0.02668 kg mol-1}\\
+ & = 311.636 m+2 s-2 K-1
+\end{split}
+\end{equation}
+
+
+\vspace{6 mm}
+
+where: 
+
+\vspace{6 mm}
+
+\begin{equation}
+\boldsymbol{\mathit{R}} = 8.31446 m+2 kg s-2 K-1 mol-1
+\end{equation}
+
+
+\vspace{10 mm}
+
+This allows us to find the area of the throat cross-section via: \vspace{10 mm} 
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{A_{throat}}} & = \frac{0.205518 kg s-1}{1.16733e+06 Pa} * \sqrt{\frac{\boldsymbol{\mathit{R'}} * 3020.04 K}{\boldsymbol{\mathit{\gamma}}}}\\
+ & = \left(1.76058e-07 m s\right) * \left(885.604 m/s\right)\\
+ & = 155.917 mm+2 
+\end{split}
+\end{equation}
+
+
+\vspace{10 mm}
+
+From here, basic geometry gets us the diameter/radius:
+
+
+
+\vspace{10 mm}
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{r_{throat}}} & = \sqrt{\frac{0.000155917 m+2}{\mathit{\pi}}}\\
+ & = 7.04486 mm 
+\end{split}
+\end{equation}
+
+
+\vspace{10 mm}
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{d_{throat}}} & = \boldsymbol{\mathit{r_{throat}}} * 2\\
+ & = 14.0897 mm 
+\end{split}
+\end{equation}
+
+
+
+
+
+
+\vspace{10 mm}
+
+
+
+
+
+
+
+\subsection{Summary}
+
+\begin{itemize}
+	\item \textbf{Throat Pressure: } 1.17 MPa 
+	\item \textbf{Throat Temperature: } 3020.04 K 
+	\item \textbf{Throat Area: } 155.917 mm+2  
+	\item \textbf{Throat Radius: } 7.04486 mm  
+\end{itemize}
+
+
+
+
+
+
+
+
+\newpage
+
+\section{Combustion Chamber}
+
+Defining characteristics and calculations for the combustion chamber.
+
+
+\subsection{Critical Constants}
+
+Underlying constants that form the combustion chamber profile:
+
+\begin{itemize}
+	\item \textbf{Throat Area: } 155.917 mm+2  
+	\item \textbf{Throat Dimeter: } 14.0897 mm  
+	\item \textbf{Converging Angle ($\theta$): } 30 \degree 
+	\item \textbf{L*: } 600 mm  
+\end{itemize}
+
+
+
+
+\subsection{Combustion Chamber Geometry}
+
+The following equations define the geometrical/physical dimensions of the chamber and converging portion of the nozzle.
+
+
+
+
+\vspace{10 mm}
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{V_{chamber}}} & = \boldsymbol{\mathit{A_{throat}}} * \boldsymbol{\mathit{L*}}\\
+ & = \left(0.000155917 m+2\right) * \left(0.6 m\right)\\
+ & = 93550.4 mm+3 
+\end{split}
+\end{equation}
+
+
+\vspace{10 mm}
+
+We achieve an initial approximation of the chamber length from the following formula:
+
+
+
+\vspace{6 mm}
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{L_{estimate}}} & = \mathit{e}^{\left(0.029 * {\left(\ln{\left(\boldsymbol{\mathit{D_{throat}}}\right)}\right)}^{2} + 0.047 * \ln{\left(\boldsymbol{\mathit{D_{throat}}}\right)} + 1.94\right)}\\
+ & = 96.458 mm 
+\end{split}
+\end{equation}
+
+
+\vspace{6 mm}
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{D_{estimate}}} & = 35.1406 mm 
+\end{split}
+\end{equation}
+
+
+Which we can further refine by solving the following via iteration:
+
+
+
+\vspace{10 mm}
+
+\begin{equation}
+\boldsymbol{\mathit{D_{estimate}}} = \sqrt{\frac{{\left(\boldsymbol{\mathit{D_{throat}}}\right)}^{3} + \frac{24}{\mathit{\pi}} * \tan{\left(\mathit{\theta}\right)} * \boldsymbol{\mathit{V_{chamber}}}}{0.0351406 + 6 * \tan{\left(\mathit{\theta}\right)} * \boldsymbol{\mathit{L_{estimate}}}}}
+\end{equation}
+
+
+\vspace{10 mm}
+
+Which yields (after 100 iterations):
+
+ 
+
+\vspace{6 mm}
+
+\begin{equation}
+\boldsymbol{\mathit{D_{chamber}}} = 33.4026 mm 
+\end{equation}
+
+
+\begin{equation}
+\boldsymbol{\mathit{R_{chamber}}} = 16.7013 mm 
+\end{equation}
+
+
+\vspace{10 mm}
+
+Giving:
+
+
+
+\vspace{6 mm}
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{A_{chamber}}} & = 0.000278934 m+2 * \mathit{\pi}\\
+ & = 876.296 mm+2 
+\end{split}
+\end{equation}
+
+
+\vspace{6 mm}
+
+Giving a contraction ratio of:
+
+
+
+\vspace{6 mm}
+
+\begin{equation}
+\frac{\boldsymbol{\mathit{A_{chamber}}}}{\boldsymbol{\mathit{A_{throat}}}} = 5.62026
+\end{equation}
+
+
+\vspace{10 mm}
+
+We can now find a length for the chamber:
+
+
+
+\vspace{6 mm}
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{L_{chamber}}} & = \frac{\boldsymbol{\mathit{V_{chamber}}}}{\boldsymbol{\mathit{A_{chamber}}}}\\
+ & = \frac{93550.4 mm+3 }{876.296 mm+2 }\\
+ & = 106.757 mm 
+\end{split}
+\end{equation}
+
+
+\vspace{10 mm}
+
+Via trigonometry we find the converging section length:
+
+
+
+\vspace{6 mm}
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{R_{diff}}} & = \boldsymbol{\mathit{R_{conv}}} - \boldsymbol{\mathit{R_{throat}}}\\
+ & = 9.65645 mm 
+\end{split}
+\end{equation}
+
+
+\vspace{10 mm}
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{L_{conv}}} & = \frac{\boldsymbol{\mathit{R_{diff}}}}{\sin{\left(\mathit{\theta}\right)}} * \sin{\left(\mathit{90\degree} - \mathit{\theta}\right)}\\
+ & = 16.7255 mm 
+\end{split}
+\end{equation}
+
+
+\vspace{6 mm}
+
+Which then yields:
+
+
+
+\vspace{6 mm}
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{L_{flatwall}}} & = \boldsymbol{\mathit{L_{chamber}}} - \boldsymbol{\mathit{L_{conv}}}\\
+ & = 90.0311 mm 
+\end{split}
+\end{equation}
+
+
+
+
+\subsection{Summary}
+
+\vspace{10 mm}
+
+\begin{itemize}
+	\item \textbf{Flatwall Section Diameter:} 33.4026 mm  
+	\item \textbf{Flatwall Section Area:} 876.296 mm+2  
+	\item \textbf{Flatwall Section Length:} 90.0311 mm  
+	\item \textbf{Flatwall Lateral Area:} 112.028 cm+2  
+	\item \textbf{Flatwall Volume:} 93.5504 cm+3  
+\end{itemize}
+
+
+\vspace{10 mm}
+
+\begin{itemize}
+	\item \textbf{Converging Section Height:} 9.65645 mm  
+	\item \textbf{Converging Section Length:} 16.7255 mm  
+	\item \textbf{Converging Lateral Area:} 14.4076 cm+2  
+	\item \textbf{Converging Section Volume:} 7.81552 cm+3  
+\end{itemize}
+
+
+\vspace{6 mm}
+
+\begin{itemize}
+	\item \textbf{Length/Width Ratio:} 3.19605 
+	\item \textbf{Contraction Ratio:} 5.62026 
+\end{itemize}
+
+
+\vspace{6 mm}
+
+\begin{itemize}
+	\item \textbf{Total Chamber Length:} 106.757 mm  
+	\item \textbf{Total Surface Area:} 126.435 cm+2  
+	\item \textbf{Combustible Volume:} 101.366 cm+3  
+\end{itemize}
+
+
+
+
+
+
+
+
+\newpage
+
+\section{Nozzle}
+
+Defining characteristics and calculations for the nozzle.
+
+
+\subsection{Critical Constants}
+
+Underlying constants that form the nozzle profile:
+
+\begin{itemize}
+	\item \textbf{$P_{ambient}$: } 101 kPa 
+	\item \textbf{$P_{chamber}$: } 2.07 MPa 
+	\item \textbf{$A_{throat}$: } 155.917 mm  
+	\item \textbf{Gamma: } 1.2 
+\end{itemize}
+
+
+
+
+\subsection{Nozzle Geometry}
+
+The following equations define the geometrical/physical dimensions of the nozzle and exit area.
+
+
+
+
+First we solve for the mach number:
+
+
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{N_{mach}}} & = \sqrt{\frac{2}{\boldsymbol{\mathit{\gamma}} - 1} * {\left(\frac{\boldsymbol{\mathit{P_{chamber}}}}{\boldsymbol{\mathit{P_{ambient}}}}\right)}^{\frac{\boldsymbol{\mathit{\gamma}} - 1}{\boldsymbol{\mathit{\gamma}}}} - 1}\\
+ & = 2.55548
+\end{split}
+\end{equation}
+
+
+\vspace{6 mm}
+
+We can now find the appropriate exit area:
+
+
+
+\vspace{10 mm}
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{A_{exit}}} & = \frac{\boldsymbol{\mathit{A_{throat}}}}{2.55548} * {\left(\frac{1 + \frac{\boldsymbol{\mathit{\gamma}} - 1}{2} * 6.53049}{\frac{\boldsymbol{\mathit{\gamma}} + 1}{2}}\right)}^{\frac{\boldsymbol{\mathit{\gamma}} + 1}{2 * \boldsymbol{\mathit{\gamma}} - 1}}\\
+ & = 573.236 mm+2 
+\end{split}
+\end{equation}
+
+
+\vspace{10 mm}
+
+Just as in the throat calculaions, basic geometry gives us radius and diameter.
+
+
+
+
+\vspace{6 mm}
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{r_{exit}}} & = \sqrt{\frac{0.000573236 m+2}{\mathit{\pi}}}\\
+ & = 13.508 mm 
+\end{split}
+\end{equation}
+
+
+\vspace{10 mm}
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{d_{exit}}} & = \boldsymbol{\mathit{r}} * 2\\
+ & = 27.016 mm 
+\end{split}
+\end{equation}
+
+
+\vspace{6 mm}
+
+Via trigonometry we find the nozzle length:
+
+
+
+\vspace{6 mm}
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{R_{diff}}} & = \boldsymbol{\mathit{R_{nozzle}}} - \boldsymbol{\mathit{R_{throat}}}\\
+ & = 6.46316 mm 
+\end{split}
+\end{equation}
+
+
+\vspace{6 mm}
+
+\begin{equation}
+\begin{split}
+\boldsymbol{\mathit{L_{nozzle}}} & = \frac{\boldsymbol{\mathit{R_{diff}}}}{\sin{\left(\mathit{\theta}\right)}} * \sin{\left(\mathit{90\degree} - \mathit{\theta}\right)}\\
+ & = 24.1208 mm 
+\end{split}
+\end{equation}
+
+
+\vspace{6 mm}
+
+For the given diverging angle of: 15 \degree
+
+ 
+
+\vspace{10 mm}
+
+
+
+\subsection{Summary}
+
+\begin{itemize}
+	\item \textbf{Gas Mach Number: } 2.55548 
+	\item \textbf{Nozzle Length: } 24.1208 mm  
+	\item \textbf{Nozzle Radius: } 13.508 mm  
+	\item \textbf{Nozzle Diameter: } 27.016 mm  
+	\item \textbf{Diverging Angle: } 15 \degree 
+\end{itemize}
+
+
+
+
+
+
+\end{document}
+
