@@ -1,0 +1,27 @@
+sudo: false
+language: generic
+
+addons:
+  apt:
+    sources:
+      - llvm-toolchain-precise-3.8
+      - ubuntu-toolchain-r-test
+    packages:
+      - scons
+      - clang-3.8
+      - rubber
+      - texlive-latex-extra
+
+
+script:
+  - git clone https://github.com/austin-suborbitals/rocketgen
+  - cd rocketgen
+  - scons --clang --travis --update
+  - cd $TRAVIS_BUILD_DIR
+  - mkdir doc && cd doc
+  - ../rocketgen/bin/prog/rocketgen -c ../arwen.json > arwen.tex
+  - rubber -d arwen.tex
+
+after_success:
+  - cd $TRAVIS_BUILD_DIR
+  - ./scripts/ghp_upload.sh
